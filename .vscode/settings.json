@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "/home/mugo/anaconda3/bin/python"
+    "python.pythonPath": "/home/mugo/anaconda3/bin/python",
+    "python.linting.pylintArgs": [ "--load-plugins=pylint_django"],
 }
