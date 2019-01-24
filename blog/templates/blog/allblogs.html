@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-
-
 <head>
   {% load staticfiles %}
   <meta charset="utf-8">
@@ -10,7 +8,10 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v3.8.5">
-  <title>Joseph Mugo</title>
+  <title>Album example · Bootstrap</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:700%7CNunito:300,600" rel="stylesheet">
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
@@ -29,48 +30,41 @@
         <div class="navbar-nav ml-auto">
           <a class="nav-item nav-link" href="https://twitter.com/writivist">Twitter</a>
           <a class="nav-item nav-link" href=" {% static 'resume.pdf' %} ">Resume</a>
-          <a class="nav-item nav-link" href=" {% url 'allblogs' %} ">Blog</a>
+          <a class="nav-item nav-link active" href=" {% url 'allblogs' %} ">Blog</a>
         </div>
       </div>
     </nav>
   </header>
 
   <main role="main">
+    <div class="container">
+      <h2 class="text-center pt-3"> Pretty Little Fears
+        <h2 />
+        <br>
+        <br>
+        <h2>Latest Posts</h2>
+        <hr>
 
-    <section class="jumbotron text-center">
-      <div class="container">
-        <h1 class="jumbotron-heading">Hi, I'm Joseph.</h1>
-        <p class="lead text-muted">My name is Joseph Mwangi and I love to make Django websites. Sometimes I write and
-          sometimes I code!</p>
-        <p>
-          <a href="mailto:mugojoseph007@gmail.com" class="btn btn-primary my-2">Email Me</a>
-        </p>
-        <img class="img-fluid" src=" {% static 'Morgan-Freeman.jpg' %} " alt="">
-      </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-      <div class="container">
-
-        <div class="row">
-          <!-- We loop from here to add extra jobs-->
-
-          {% for job in jobs.all %}
-          <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-              <img src=" {{ job.job_image.url }} " class="card-img-top img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-                alt="">
+        
+        <div class="row py-3">
+          <!-- We loop from here to add blogs -->
+          {% for blog in blogs.all %}
+          <div class="col-12 col-md-6 my-2">
+            <div class="card">
+              <img src=" {{ blog.post_image.url }} " class="img-fluid" alt="Featured Image">
               <div class="card-body">
-                <p class="card-text"> {{ job.summary }} </p>
+                <h5 class="card-title"><a href=" {% url 'detail' blog.id %} "> {{ blog.title }} </a></h5>
+                <p><small class="text-muted">Posted on: {{ blog.pub_date_pretty }}</small></p>
+                <p class="card-text">{{ blog.summary}}...</p>
+                <a href="#" class="btn btn-primary">Read More</a>
+
               </div>
             </div>
           </div>
           {% endfor %}
-          <!--End loop-->
         </div>
-      </div>
+        
     </div>
-
   </main>
 
   <footer class="text-muted">
